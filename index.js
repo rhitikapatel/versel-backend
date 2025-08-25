@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import serverless from "serverless-http";
 import CompanyRoute from "./routes/company.route.js";
 import userRoute from "./routes/user.route.js";
 import cors from "cors";
@@ -12,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connection (connect only once per cold start)
+// MongoDB connection (only once per cold start)
 if (mongoose.connection.readyState === 0) {
   mongoose.connect(process.env.MongoDBURI, {
     useNewUrlParser: true,
@@ -31,6 +30,5 @@ app.get("/api", (req, res) => {
   res.json({ message: "Backend running on Vercel 🚀" });
 });
 
-// ❌ Do NOT use app.listen()
-// ✅ Export handler for Vercel
-export const handler = serverless(app);
+// ✅ Export the app for Vercel
+export default app;
