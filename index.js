@@ -10,6 +10,13 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(cors({
+  origin: [          // dev
+    "hhttps://versel-frontend-two.vercel.app/" // deployed frontend
+  ],
+  methods: ["GET","POST","PUT","DELETE"],
+  credentials: true
+}));
 
 // MongoDB connection (only once per cold start)
 if (mongoose.connection.readyState === 0) {
