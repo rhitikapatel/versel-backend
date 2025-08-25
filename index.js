@@ -2,8 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import serverless from "serverless-http";
-import CompanyRoute from "../routes/company.route.js";
-import userRoute from "../routes/user.route.js";
+import CompanyRoute from "./routes/company.route.js";
+import userRoute from "./routes/user.route.js";
 import cors from "cors";
 
 dotenv.config();
